@@ -1,19 +1,19 @@
-import './AllCafe.css'
+import './Cafe.css'
 import { useState, useEffect } from 'react'
 import SingleCafe from "./SingleCafe"
 import axios from 'axios'
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL
 
-export default function AllCafe(area){
+export default function AllCafe({area, searchCafe}){
 
     const [selectedCafe, setSelectedCafe] = useState("")
     const [cafesList, setCafeList] = useState();
-    
+
     useEffect(() => {
         try {
             const fetchCafes= async() => {
-                const res = await axios.get(`${baseUrl}/cafes?area=${area.area}`)
+                const res = await axios.get(`${baseUrl}/cafes?area=${area}`)
                 setCafeList(res.data)
             }
             fetchCafes();
@@ -28,10 +28,20 @@ export default function AllCafe(area){
             }
         })
     }
-    
+
+    const goBackApp= () => {
+        searchCafe('')
+    }
+
+    const goBackAllCafe = () => {
+        setSelectedCafe('')
+    }
+
     return (
         <>
         { !selectedCafe ? 
+          <>
+            <button className='backButton' onClick={goBackApp}>←</button>
             <div className="cafeCell">
 
                 { cafesList && cafesList.map ((cafe, index) => {
@@ -47,10 +57,13 @@ export default function AllCafe(area){
                         </figure>
                     )
                 })}
-                </div>
+            </div>
+          </>
             : 
             <SingleCafe
                 selectedCafe={selectedCafe}
+                goBackAllCafe={goBackAllCafe}
+                area={area}
             >
             </SingleCafe>
             }
