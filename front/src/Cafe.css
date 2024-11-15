@@ -10,7 +10,7 @@
 .cafeCell::after {
     display: block;
     content: "";
-    width: 138px;
+    width: 123px;
   }
 
 figure {
@@ -22,8 +22,8 @@ figure {
     height: 250px;  
 }
 .photo {
-    width: 138px;
-    height: 138px;
+    width: 123px;
+    height: 123px;
 }
 
 h2{

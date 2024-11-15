@@ -5,6 +5,7 @@ const app = express();
 //routing設定（/api/cafes にGET リクエストが来たときの処理を定義）
 const knex = require('./db/knex')
 
+//カフェ一覧取得
 app.get('/api/cafes', async (req, res) => {
   try {
     //areaで絞る
@@ -58,6 +59,7 @@ app.get('/api/cafes', async (req, res) => {
   }
 })
 
+//クリックされたカフェの情報と写真を取得
 app.get('/api/cafes/:cafeName', async (req, res) => {
   try {
     const cafes = await knex('cafes').select('*').where('cafeName', `${req.params.cafeName}`)
