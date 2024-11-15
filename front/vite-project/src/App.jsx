@@ -16,14 +16,14 @@ function App() {
   
   return (
     <>
+      <h2 className="header">Cafestagram</h2>
+      <br></br>
+      <br></br>
       { !searchedArea ?
           <SearchCafe
             searchCafe={searchCafe}
           ></SearchCafe>:
         <>
-          <h2>
-              Cafestagram
-          </h2>
           <AllCafe
             area={searchedArea}
           ></AllCafe>
