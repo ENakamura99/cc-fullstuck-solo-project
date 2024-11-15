@@ -1,0 +1,61 @@
+
+.cafeCell {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 5px;
+    margin-top: 20px;
+}
+
+.cafeCell::after {
+    display: block;
+    content: "";
+    width: 138px;
+  }
+
+figure {
+    margin: 0;
+}
+
+.biggerPhoto {
+    width: 250px;
+    height: 250px;  
+}
+.photo {
+    width: 138px;
+    height: 138px;
+}
+
+h2{
+    margin-top: 300px;
+}
+.fig
+/* トリミングしてくれる */
+img{
+    object-fit: cover;
+}
+
+button {
+    background-color: rgb(137, 108, 97);
+    color: white;
+    border:solid rgb(95, 82, 75);
+    margin-left: 10px;
+}
+
+.backButton{
+    color: rgb(71, 35, 23);
+    background-color: white;
+    border: white;
+    font-size: 30px;
+    display: flex;
+    padding: 3px;
+    justify-content: flex-start;
+
+}
+input{
+    height: 30px;
+    width: 200px;
+}
+
+
+

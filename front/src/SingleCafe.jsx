@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
 import axios from 'axios'
-import "./AllCafe.css"
+import "./Cafe.css"
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL
 
-export default function SingleCafe({selectedCafe}){ //オブジェクトを受け取るために{}をつける
+export default function SingleCafe({selectedCafe, goBackAllCafe}){ 
+
 
     const [cafeInfo, setCafeInfo] = useState();
     const [sameCafePhotos, setSameCafePhotos] = useState([]);
@@ -14,7 +15,7 @@ export default function SingleCafe({selectedCafe}){ //オブジェクトを受�
             const fetchCafe= async() => {
                 const res = await axios.get(`${baseUrl}/cafes/${selectedCafe}`)
                 
-                //データ表示用
+                //カフェデータ表示用
                 setCafeInfo(res.data[0])
 
                 //写真表示用
@@ -30,8 +31,13 @@ export default function SingleCafe({selectedCafe}){ //オブジェクトを受�
         }
     },[])
 
+    const handleGoBack = () =>{
+        goBackAllCafe()
+    }
+    
     return (
         <>
+        <button className='backButton' onClick={handleGoBack}>←</button>
         { cafeInfo &&
             <>
             <h3>{ cafeInfo.cafeName }</h3>
