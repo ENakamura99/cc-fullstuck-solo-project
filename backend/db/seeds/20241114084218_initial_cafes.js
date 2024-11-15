@@ -11,6 +11,9 @@ exports.seed = async function (knex) {
   const photoData3 = fs.readFileSync('C:/Users/NakamuraEmika/Desktop/CodeChrysalisPrecourseV2/solo-project-v2/cc-fullstuck-solo-project/photos/pexels-chevanon-312418.jpg')
   const photoData4 = fs.readFileSync('C:/Users/NakamuraEmika/Desktop/CodeChrysalisPrecourseV2/solo-project-v2/cc-fullstuck-solo-project/photos/pexels-arthurbrognoli-2260824.jpg')
   const photoData5 = fs.readFileSync('C:/Users/NakamuraEmika/Desktop/CodeChrysalisPrecourseV2/solo-project-v2/cc-fullstuck-solo-project/photos/pexels-fotios-photos-1833769.jpg')
+  const photoData6 = fs.readFileSync('C:/Users/NakamuraEmika/Desktop/CodeChrysalisPrecourseV2/solo-project-v2/cc-fullstuck-solo-project/photos/pexels-lina-1813466.jpg')
+  const photoData7 = fs.readFileSync('C:/Users/NakamuraEmika/Desktop/CodeChrysalisPrecourseV2/solo-project-v2/cc-fullstuck-solo-project/photos/pexels-ekrulila-2307221.jpg')
+  const photoData8 = fs.readFileSync('C:/Users/NakamuraEmika/Desktop/CodeChrysalisPrecourseV2/solo-project-v2/cc-fullstuck-solo-project/photos/pexels-pratikgupta-2748537.jpg')
 
   await knex('cafes').insert([
     { 
@@ -48,6 +51,27 @@ exports.seed = async function (knex) {
       address: '東京都新宿区西新宿1-1-3',
       businessHours: '7:00-15:00'
     },
+    { 
+      cafeName: 'Moonlight Brew',
+      photo: photoData6, 
+      review:5,
+      address: '東京都渋谷区神南1-23-10',
+      businessHours: '10:00-17:00'
+    }, 
+    { 
+      cafeName: 'Moonlight Brew',
+      photo: photoData7, 
+      review: 4,
+      address: '東京都渋谷区神南1-23-10',
+      businessHours: '10:00-17:00'
+    }, 
+    { 
+      cafeName: 'Moonlight Brew',
+      photo: photoData8, 
+      review: 5,
+      address: '東京都渋谷区神南1-23-10',
+      businessHours: '10:00-17:00'
+    }, 
   ]
   )
 }
