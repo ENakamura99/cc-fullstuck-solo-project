@@ -1,61 +1,56 @@
 import './AllCafe.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import SingleCafe from "./SingleCafe"
+import axios from 'axios'
+
+const baseUrl = import.meta.env.VITE_API_BASE_URL
 
 export default function AllCafe(area){
 
-    const [cafeName, setCafeName] = useState("")
-
-    console.log(area)
-    //backendができたらareaを元にcafeの情報を取ってくる。とってきた情報をcafesに入れる
-    //const [cafes, setCafe] = setState();
+    const [selectedCafe, setSelectedCafe] = useState("")
+    const [cafesList, setCafeList] = useState();
     
+    useEffect(() => {
+        try {
+            const fetchCafes= async() => {
+                const res = await axios.get(`${baseUrl}/cafes?area=${area.area}`)
+                setCafeList(res.data)
+            }
+            fetchCafes();
+        } catch (e){
+            console.log("error", e)
+        }
+    },[])
     const showSingleCafe = (e) => {
-        console.log(e.target.src)
-        setCafeName('a')
-        console.log("aaaa", cafeName)
+        cafesList.map((cafe) => {
+            if (e.target.src === cafe.photo) {
+                setSelectedCafe(cafe.cafeName)
+            }
+        })
     }
     
     return (
         <>
-            { !cafeName ? 
-                <div className="cafeCell">
-                    {/* backendができたら修正 */}
-                    {/* { cafes.map ((cafe) => {
-                        return (
-                            <figure>
-                                <figcaption className="figCaption">{cafe.name}</figcaption>
-                                <img className="photo" src={"../../src/tempPhoto/pexels-chevanon-312418.jpg"} alt="cafe1" />
-                                onClick=
-                            </figure>
-                        )
-                    })} */}
-                    <figure>
-                        <figcaption className="figCaption">a</figcaption>
-                        <img 
-                            className="photo" 
-                            src="../../src/tempPhoto/pexels-chevanon-312418.jpg" 
-                            onClick={showSingleCafe}
-                        />
-                        
-                    </figure>
-                    <figure>
-                        <figcaption className="figCaption">b</figcaption>
-                        <img className="photo" src="../../src/tempPhoto/pexels-fotios-photos-907142.jpg" alt="cafe1" />
-                    </figure>
-                    <figure>
-                        <figcaption className="figCaption">c</figcaption>
-                        <img className="photo" src="../../src/tempPhoto/pexels-arthurbrognoli-2260824.jpg" alt="cafe1" />
-                    </figure>
-                    <figure>
-                        <figcaption className="figCaption">d</figcaption>
-                        <img className="photo" src="../../src/tempPhoto/pexels-fotios-photos-1833769.jpg" alt="cafe1" />
-                    </figure>
+        { !selectedCafe ? 
+            <div className="cafeCell">
 
+                { cafesList && cafesList.map ((cafe, index) => {
+                    return (
+                        <figure key={index}>
+                            <figcaption className="figCaption">{cafe.cafeName}</figcaption>
+                            <img 
+                                className="photo" 
+                                src={cafe.photo} 
+                                alt="cafe" 
+                                onClick={showSingleCafe}
+                            />
+                        </figure>
+                    )
+                })}
                 </div>
             : 
             <SingleCafe
-                cafeName={cafeName}
+                selectedCafe={selectedCafe}
             >
             </SingleCafe>
             }
