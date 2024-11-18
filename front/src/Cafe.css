@@ -1,3 +1,6 @@
+h2{
+    margin-top: 300px;
+}
 
 .cafeCell {
     display: flex;
@@ -26,13 +29,21 @@ figure {
     height: 123px;
 }
 
-h2{
-    margin-top: 300px;
-}
 .fig
 /* トリミングしてくれる */
 img{
     object-fit: cover;
+}
+
+.cafeDetails {
+    display: flex;
+    flex-direction: column; /*rowだったら横ならびに、columnだったら縦にならぶ*/
+}
+  
+.cafeDetails > div {
+    text-align: left;
+    font-size: 14px; 
+    margin: 0 30px;
 }
 
 button {

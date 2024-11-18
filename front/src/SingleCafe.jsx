@@ -15,6 +15,7 @@ export default function SingleCafe({selectedCafe, goBackAllCafe}){
             const fetchCafe= async() => {
                 const res = await axios.get(`${baseUrl}/cafes/${selectedCafe}`)
                 
+                console.log(res.data)
                 //カフェデータ表示用
                 setCafeInfo(res.data[0])
 
@@ -48,9 +49,16 @@ export default function SingleCafe({selectedCafe, goBackAllCafe}){
             />
             <br></br>
             <br></br>
-            <div>Address : {cafeInfo.address}</div>
-            <div>BusinessHours : {cafeInfo.businessHours}</div>
-            <div>Review : {cafeInfo.review}</div>
+            <div className="cafeDetails">
+                <div>住所 : {cafeInfo.address}</div>
+                <div>営業時間 : {cafeInfo.businessHours}</div>
+                <div>Wifi有無 : {cafeInfo.wifi? "あり" : "なし"}</div>
+                <div>コンセント有無 : {cafeInfo.outlet? "あり" : "なし"}</div>
+                <div>喫煙有無 : {cafeInfo.smoking? "あり" : "なし"}</div>
+                <div>雰囲気 : {cafeInfo.atmosphere}</div>
+                <div>価格帯 : {cafeInfo.priceRange}</div>
+                <div>レビュー : {cafeInfo.coffeeReview}</div>
+            </div>
             </>
         }
 
