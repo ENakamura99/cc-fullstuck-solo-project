@@ -21,9 +21,9 @@ app.get('/api/cafes', async (req, res) => {
           id: cafe.id,
           cafeName: cafe.cafeName,
           photo: cafe.photo,
-          review: cafe.review,
-          address: cafe.address,
-          businessHours: cafe.businessHours,
+          // review: cafe.review,
+          // address: cafe.address,
+          // businessHours: cafe.businessHours,
         });
         return acc; n
       }, {}); 
